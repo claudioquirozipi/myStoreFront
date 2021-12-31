@@ -4,3 +4,9 @@ export {
   producteditAction,
   productDeleteAction,
 } from "./products/actions";
+
+export {
+  authCreateUserAction,
+  authLoginAction,
+  authLogoutAction,
+} from "./auth/actions";

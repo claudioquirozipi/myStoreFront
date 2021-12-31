@@ -3,6 +3,9 @@ import {
   createProduct,
   editedProduct,
   deleteProduct,
+  createUser,
+  login,
+  logout,
 } from "./firebase";
 
 export const API = {
@@ -11,5 +14,10 @@ export const API = {
     create: createProduct,
     edit: editedProduct,
     delete: deleteProduct,
+  },
+  auth: {
+    createUser: createUser,
+    login: login,
+    logout: logout,
   },
 };

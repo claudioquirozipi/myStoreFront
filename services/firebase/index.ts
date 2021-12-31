@@ -10,6 +10,13 @@ import {
   doc,
 } from "firebase/firestore/lite";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
 import { firebaseConfig } from "../../firebaseConfig";
 import {
   Product,
@@ -24,8 +31,57 @@ import { readMapper } from "./mapper";
 
 // ***********************Initialize Firebase*****************
 const app = initializeApp(firebaseConfig);
+const auth = getAuth();
 const db = getFirestore(app);
 const storage = getStorage();
+
+// ***********************login*****************
+
+export async function createUser(email: string, password: string) {
+  try {
+    const response: any = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    console.log("response", response);
+  } catch (error) {
+    console.log("error", error);
+  }
+}
+
+export async function login(email: string, password: string) {
+  try {
+    const response: any = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    console.log("response", response);
+  } catch (error) {
+    console.log("error", error);
+  }
+}
+
+export async function logout() {
+  try {
+    const response: any = await signOut(auth);
+    console.log("response", response);
+  } catch (error) {
+    console.log("error", error);
+  }
+}
+
+export async function observerAuth() {
+  return onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log("fff user", user);
+    } else {
+      console.log("fff está deslogueado");
+    }
+  });
+}
+
 // ***********************Products*****************
 const productsCol = collection(db, "products");
 
