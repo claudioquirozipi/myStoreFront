@@ -9,7 +9,7 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore/lite";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -118,17 +118,12 @@ export async function deleteProduct(id: string) {
 
 // ***********************Storage*****************
 export async function upDateImg(file: File, imgName: string) {
-  // const storage = getStorage();
-
   const storageRef = ref(storage, `images/${imgName}`);
-
-  const path = storageRef.fullPath;
-  const name = storageRef.name;
   try {
-    const response = await uploadBytes(storageRef, file);
-    console.log("path: ", path, " name: ", name);
-    console.log("response", response);
+    await uploadBytes(storageRef, file);
+    const url = await getDownloadURL(storageRef);
+    return url;
   } catch (error) {
-    console.log("error", error);
+    throw error;
   }
 }

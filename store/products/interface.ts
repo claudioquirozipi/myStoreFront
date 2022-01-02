@@ -9,22 +9,27 @@ export interface Action {
   payload: any;
 }
 
+interface Img {
+  name: string;
+  path: string;
+}
+
 export interface Product {
   id: string;
   name: string;
-  mainImg: string;
+  img: Img[];
   price: number;
 }
 
 export interface ProductCreate {
   name: string;
-  mainImg: string;
+  img: Img[];
   price: number;
 }
 
 export interface ProductEdited {
   id: string;
   name: string;
-  mainImg: string;
+  img: Img[];
   price: number;
 }

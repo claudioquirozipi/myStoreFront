@@ -10,3 +10,8 @@ export {
   authLoginAction,
   authLogoutAction,
 } from "./auth/actions";
+
+export {
+  addShoppingCarAction,
+  removeShoppingCarAction,
+} from "./shoppingCart/actions";

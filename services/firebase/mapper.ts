@@ -5,7 +5,7 @@ export const readMapper = (response: any) => {
     id: product.id,
     name: product.name,
     price: product.price,
-    mainImg: product.mainImg,
+    img: product.img,
   }));
   return newResponse;
 };

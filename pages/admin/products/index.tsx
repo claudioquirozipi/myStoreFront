@@ -23,23 +23,31 @@ const ProductsPage = () => {
 
   const newProduct: ProductCreate = {
     name: "casa",
-    mainImg: "telefono img",
+    img: [],
     price: 45,
   };
 
   const editedProduct: ProductCreate = {
     name: "casa editada",
-    mainImg: "telefono img",
+    img: [],
     price: 45,
   };
+  console.log("fff products", products);
   return (
     <div>
-      <h1>productos</h1>
+      <h1>productos sd</h1>
 
       <ul>
         {products.data.map((p: Product) => (
           <li key={p.id}>
             {p.name}
+            {p.img && (
+              <img
+                style={{ width: "100px" }}
+                src={p.img[0].path}
+                alt={p.img[0].name}
+              />
+            )}
             <button onClick={() => editProduct({ ...editedProduct, id: p.id })}>
               editar
             </button>
