@@ -1,3 +1,4 @@
+import type { NextPage } from "next";
 import { Field, Form, Formik, FormikProps } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -10,7 +11,7 @@ import {
   authLogoutAction,
 } from "../../../store/actions";
 import { observerAuth } from "../../../services/firebase";
-const LoginPage = () => {
+const LoginPage: NextPage = () => {
   const dispatch = useDispatch();
 
   interface Values {

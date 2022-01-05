@@ -35,7 +35,7 @@ const ProductsPage = () => {
   console.log("fff products", products);
   return (
     <div>
-      <h1>productos sd</h1>
+      <h1>Productos</h1>
 
       <ul>
         {products.data.map((p: Product) => (

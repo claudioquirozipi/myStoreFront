@@ -54,8 +54,8 @@ export const productsCreateAction =
   (newProduct: ProductCreate) => async (dispatch: Dispatch, state: any) => {
     dispatch(createStart);
     try {
-      const response: any = await API.products.create(newProduct);
-      dispatch(createOk(response));
+      // const response: any = await API.products.create(newProduct);
+      // dispatch(createOk(response));
     } catch (error) {
       const errorSimulate = "ocurrió un error";
       dispatch(createError(errorSimulate));
@@ -77,8 +77,8 @@ export const producteditAction =
   (editedProduct: ProductEdited) => async (dispatch: Dispatch, state: any) => {
     dispatch(editStart);
     try {
-      const response: any = await API.products.edit(editedProduct);
-      dispatch(editOk(response));
+      // const response: any = await API.products.edit(editedProduct);
+      // dispatch(editOk(response));
     } catch (error) {
       const errorSimulate = "ocurrió un error";
       dispatch(editError(errorSimulate));

@@ -10,9 +10,25 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { useState } from "react";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import MenuShoppingCar from "../menuShoppingCar";
+import { deleteAllProductOfShoppingCarAction } from "../../store/actions";
+import { useDispatch } from "react-redux";
 
 const Layout = (props: LayoutProps) => {
-  const { children, totalPrice, totalProducts } = props;
+  const { children, totalPrice, totalProducts, shoppingCarProduct } = props;
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const dispatch = useDispatch();
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const onClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
@@ -26,6 +42,7 @@ const Layout = (props: LayoutProps) => {
                 size="large"
                 aria-label="show 4 new mails"
                 color="inherit"
+                onClick={handleClick}
               >
                 <Badge badgeContent={totalProducts} color="error">
                   <ShoppingCartIcon />
@@ -36,8 +53,18 @@ const Layout = (props: LayoutProps) => {
         </AppBar>
       </Box>
       <PageWrapperSC>{children}</PageWrapperSC>
+      <MenuShoppingCar
+        onClose={onClose}
+        anchorEl={anchorEl}
+        shoppingCarProduct={shoppingCarProduct}
+        onDelete={onDelete}
+      />
     </div>
   );
+
+  async function onDelete(id: string) {
+    dispatch(deleteAllProductOfShoppingCarAction(id));
+  }
 };
 
 export default Layout;

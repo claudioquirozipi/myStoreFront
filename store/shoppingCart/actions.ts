@@ -88,3 +88,34 @@ export const removeShoppingCarAction =
       payload: newPayload,
     });
   };
+
+//*********************Delete all product********************
+export const deleteAllProductOfShoppingCarAction =
+  (id: string) => async (dispatch: Dispatch, getState: any) => {
+    const state = getState();
+
+    let newPayload: ShoppingCar = { ...state.shoppingCar.data };
+    const productShoppingCarSelected = newPayload.shoppingCarProduct.filter(
+      (scp) => scp.id === id
+    );
+
+    if (productShoppingCarSelected) {
+      newPayload.totalPrice =
+        newPayload.totalPrice - productShoppingCarSelected[0].price;
+      newPayload.totalProducts =
+        newPayload.totalProducts - productShoppingCarSelected[0].amount;
+      newPayload.shoppingCarProduct = newPayload.shoppingCarProduct.filter(
+        (scp) => scp.id !== id
+      );
+    }
+
+    newPayload.message = `Hola Deseo comprar estos productos: %0A,${newPayload.shoppingCarProduct.map(
+      (scp) => `=>${scp.product.name} /S. ${scp.price} => ${scp.amount}-%0A`
+    )}Total a pagar: ${newPayload.totalPrice} %0A Total de productos: ${
+      newPayload.totalProducts
+    }`;
+    dispatch({
+      type: REMOVE_SHOPPING_CAR,
+      payload: newPayload,
+    });
+  };

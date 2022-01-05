@@ -14,4 +14,5 @@ export {
 export {
   addShoppingCarAction,
   removeShoppingCarAction,
+  deleteAllProductOfShoppingCarAction,
 } from "./shoppingCart/actions";

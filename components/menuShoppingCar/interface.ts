@@ -1,8 +1,8 @@
 import { ShoppingCarProduct } from "../../store/shoppingCart/interface";
 
-export interface LayoutProps {
-  children: any;
-  totalPrice: number;
-  totalProducts: number;
+export interface MenuShoppingCarProps {
+  onClose: any;
+  anchorEl: any;
   shoppingCarProduct: ShoppingCarProduct[];
+  onDelete(id: string): void;
 }

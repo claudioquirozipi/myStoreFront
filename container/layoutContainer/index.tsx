@@ -9,6 +9,7 @@ const LayoutContainer = (props: LayoutContainerProps) => {
     <Layout
       totalPrice={shoppingCar.data.totalPrice}
       totalProducts={shoppingCar.data.totalProducts}
+      shoppingCarProduct={shoppingCar.data.shoppingCarProduct}
     >
       {children}
     </Layout>
