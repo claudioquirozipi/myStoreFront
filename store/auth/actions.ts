@@ -1,5 +1,7 @@
 import { Dispatch } from "redux";
+
 import { API } from "../../services";
+import { uiAlertAddAction } from "../ui/alert/actions";
 import { CreateUser, Login } from "./interface";
 import {
   AUTH_CREATE_USER_START,
@@ -49,12 +51,20 @@ const loginError = (error: string) => ({
 });
 
 export const authLoginAction =
-  ({ user, password }: Login) =>
+  ({ user, password }: Login, router: any) =>
   async (dispatch: Dispatch) => {
     dispatch(loginStart);
     try {
       const response: any = await API.auth.login(user, password);
       dispatch(loginOk(response));
+      dispatch(
+        uiAlertAddAction({
+          id: "1",
+          message: "Se logueó correctamente",
+          variant: "success",
+        })
+      );
+      router.push("/admin/products");
     } catch (error) {
       const errorSimulate = "ocurrió un error";
       dispatch(loginError(errorSimulate));

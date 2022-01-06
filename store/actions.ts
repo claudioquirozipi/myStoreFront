@@ -16,3 +16,5 @@ export {
   removeShoppingCarAction,
   deleteAllProductOfShoppingCarAction,
 } from "./shoppingCart/actions";
+
+export { uiAlertRemoveAction } from "./ui/alert/actions";

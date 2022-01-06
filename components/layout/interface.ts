@@ -5,4 +5,5 @@ export interface LayoutProps {
   totalPrice: number;
   totalProducts: number;
   shoppingCarProduct: ShoppingCarProduct[];
+  type?: "client" | "login";
 }
