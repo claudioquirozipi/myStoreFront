@@ -20,18 +20,6 @@ export const WrapperDescriptionSC = styled("div")(({ theme }) => ({
   padding: theme.spacing(1, 2),
 }));
 
-export const TitleSC = styled("h1")`
-  font-size: 1.5em;
-  text-align: center;
-  color: palevioletred;
-`;
-
-export const PriceSC = styled("h1")`
-  font-size: 1.5em;
-  text-align: center;
-  color: palevioletred;
-`;
-
 export const WrapperButtonsSC = styled("div")`
   display: flex;
   align-items: center;

@@ -1,16 +1,16 @@
-import { Card, Fab } from "@mui/material";
+import RemoveIcon from "@mui/icons-material/Remove";
+import Typography from "@mui/material/Typography";
+import AddIcon from "@mui/icons-material/Add";
+import Card from "@mui/material/Card";
+import Fab from "@mui/material/Fab";
+
 import { CardClientProps } from "./interfase";
 import {
   CardContainerSC,
   ImgSC,
-  PriceSC,
-  TitleSC,
   WrapperDescriptionSC,
   WrapperButtonsSC,
 } from "./styled";
-import Typography from "@mui/material/Typography";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
 
 const CardClient = (props: CardClientProps) => {
   const { product, addProduct, amount, removeProduct } = props;

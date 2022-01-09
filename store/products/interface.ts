@@ -17,19 +17,25 @@ interface Img {
 export interface Product {
   id: string;
   name: string;
+  description: string;
   img: Img[];
   price: number;
+  category: string[];
 }
 
 export interface ProductCreate {
   name: string;
+  description: string;
   img: Img[];
   price: number;
+  category: string[];
 }
 
 export interface ProductEdited {
   id: string;
   name: string;
+  description: string;
   img: Img[];
   price: number;
+  category: string[];
 }

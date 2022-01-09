@@ -77,7 +77,7 @@ const Layout = (props: LayoutProps) => {
                 <Toolbar></Toolbar>
               </AppBar>
             </Box>
-            <WrapperSC>{children}</WrapperSC>;
+            <WrapperSC>{children}</WrapperSC>
             <Footer />
           </>
         );

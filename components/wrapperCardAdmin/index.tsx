@@ -8,7 +8,7 @@ const WrapperCardAdmin = (props: WrapperCardAdminProps) => {
   return (
     <WrapperSC>
       {products.map((p: Product) => (
-        <CardAdmin product={p} deleteProduct={deleteProduct} />
+        <CardAdmin key={p.id} product={p} deleteProduct={deleteProduct} />
       ))}
     </WrapperSC>
   );
