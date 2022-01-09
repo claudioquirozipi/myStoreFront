@@ -2,25 +2,18 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import Alert from "@mui/material/Alert";
-import Snackbar from "@mui/material/Snackbar";
-import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import AppBar from "@mui/material/AppBar";
-import Button from "@mui/material/Button";
-import Slide from "@mui/material/Slide";
 import Badge from "@mui/material/Badge";
-import Menu from "@mui/material/Menu";
 import Box from "@mui/material/Box";
 
 import { deleteAllProductOfShoppingCarAction } from "../../store/actions";
 import { WrapperSC, WrapperClientSC, WrapperLoginSC } from "./styled";
 import MenuShoppingCar from "../menuShoppingCar";
 import { LayoutProps } from "./interface";
+import Footer from "../footer";
 
 const Layout = (props: LayoutProps) => {
   const { children, totalPrice, totalProducts, shoppingCarProduct, type } =
@@ -43,8 +36,8 @@ const Layout = (props: LayoutProps) => {
       case "client":
         return (
           <>
-            <Box sx={{ flexGrow: 1 }}>
-              <AppBar position="static">
+            <Box sx={{ flexGrow: 1, height: (theme) => theme.spacing(8) }}>
+              <AppBar position="fixed">
                 <Toolbar>
                   <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Precio Total {totalPrice}
@@ -71,12 +64,23 @@ const Layout = (props: LayoutProps) => {
               onDelete={onDelete}
             />
             <WrapperClientSC>{children}</WrapperClientSC>;
+            <Footer />
           </>
         );
       case "login":
         return <WrapperLoginSC>{children}</WrapperLoginSC>;
       default:
-        return <WrapperSC>{children}</WrapperSC>;
+        return (
+          <>
+            <Box sx={{ flexGrow: 1, height: (theme) => theme.spacing(8) }}>
+              <AppBar position="fixed">
+                <Toolbar></Toolbar>
+              </AppBar>
+            </Box>
+            <WrapperSC>{children}</WrapperSC>;
+            <Footer />
+          </>
+        );
     }
   }
 
