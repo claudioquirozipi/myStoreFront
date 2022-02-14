@@ -18,7 +18,7 @@ const ProductsPage = () => {
 
   useEffect(() => {
     dispatch(productsReadAction());
-  }, []);
+  }, [dispatch]);
 
   return (
     <LayoutContainer>

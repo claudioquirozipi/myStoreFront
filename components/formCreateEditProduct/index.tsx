@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Formik, FormikProps, FieldArray } from "formik";
+import Image from "next/image";
 import * as Yup from "yup";
 
 import ImageListItemBar from "@mui/material/ImageListItemBar";
@@ -148,7 +149,12 @@ const FormCreateEditProduct = (props: FormCreateEditProductProps) => {
                             <ImageList>
                               {values.img.map((img, i) => (
                                 <ImageListItem key={img.name}>
-                                  <img src={img.path} alt={img.name} />
+                                  <Image
+                                    src={img.path}
+                                    alt={img.name}
+                                    // width={500}
+                                    // height={500}
+                                  />
 
                                   <ImageListItemBar
                                     title={img.name}

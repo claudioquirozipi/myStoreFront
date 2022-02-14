@@ -19,7 +19,7 @@ const MenuShoppingCar = (props: MenuShoppingCarProps) => {
     if (!shoppingCarProduct.length) {
       onClose();
     }
-  }, [shoppingCarProduct]);
+  }, [shoppingCarProduct, onClose]);
 
   return (
     <Menu

@@ -26,7 +26,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     dispatch(productsReadAction());
-  }, []);
+  }, [dispatch]);
 
   return (
     <LayoutContainer type="client">
