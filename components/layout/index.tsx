@@ -10,10 +10,11 @@ import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
 
 import { deleteAllProductOfShoppingCarAction } from "../../store/actions";
-import { WrapperSC, WrapperClientSC, WrapperLoginSC } from "./styled";
+import { WrapperLoginSC } from "./styled";
 import MenuShoppingCar from "../menuShoppingCar";
 import { LayoutProps } from "./interface";
 import Footer from "../footer";
+import { Container } from "@mui/material";
 
 const Layout = (props: LayoutProps) => {
   const { children, totalPrice, totalProducts, shoppingCarProduct, type } =
@@ -63,8 +64,10 @@ const Layout = (props: LayoutProps) => {
               shoppingCarProduct={shoppingCarProduct}
               onDelete={onDelete}
             />
-            <WrapperClientSC>{children}</WrapperClientSC>;
-            <Footer type="client"/>
+            <Container sx={{ paddingTop: 4, paddingBottom: 4 }}>
+              {children}
+            </Container>
+            <Footer type="client" />
           </>
         );
       case "login":
@@ -77,7 +80,9 @@ const Layout = (props: LayoutProps) => {
                 <Toolbar></Toolbar>
               </AppBar>
             </Box>
-            <WrapperSC>{children}</WrapperSC>
+            <Container sx={{ paddingTop: 4, paddingBottom: 4 }}>
+              {children}
+            </Container>
             <Footer />
           </>
         );

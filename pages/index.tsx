@@ -1,23 +1,21 @@
-import type { NextPage } from "next";
-import Head from "next/head";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import type { NextPage } from "next";
+import Head from "next/head";
+
+import WrapperCardClient from "../components/wrapperCardClient";
+import LayoutContainer from "../container/layoutContainer";
+
+import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import TextField from "@mui/material/TextField";
+import Fab from "@mui/material/Fab";
+
 import {
   productsReadAction,
-  productsCreateAction,
   addShoppingCarAction,
   removeShoppingCarAction,
 } from "../store/actions";
-import { Product } from "../store/products/interface";
-import CardClient from "../components/cardClient";
-import Fab from "@mui/material/Fab";
-import AddIcon from "@mui/icons-material/Add";
-import WrapperCardClient from "../components/wrapperCardClient";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
-import LayoutContainer from "../container/layoutContainer";
-import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
-import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
 const Home: NextPage = () => {
   const dispatch = useDispatch();

@@ -25,6 +25,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 import { ProductCreate, ProductEdited } from "../../store/products/interface";
 import { FormCreateEditProductProps } from "./interface";
+import { Grid } from "@mui/material";
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string().required("Requerido"),
@@ -79,161 +80,173 @@ const FormCreateEditProduct = (props: FormCreateEditProductProps) => {
           <Paper sx={{ padding: (theme) => theme.spacing(2, 1) }}>
             <form onSubmit={handleSubmit}>
               {console.log("fff, values", values)}
-              <Stack spacing={2}>
-                <TextField
-                  type="text"
-                  label={"Nombre del producto"}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.name}
-                  name="name"
-                  fullWidth
-                  error={handleErrors(errors, touched, "name")}
-                  helperText={errors.name}
-                />
-                <TextField
-                  type="text"
-                  label="Descripción del producto"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.description}
-                  name="description"
-                  fullWidth
-                  multiline
-                  rows={3}
-                  error={handleErrors(errors, touched, "description")}
-                  helperText={errors.description}
-                />
 
-                <TextField
-                  type="number"
-                  label="Precio"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.price}
-                  name="price"
-                  fullWidth
-                  error={handleErrors(errors, touched, "price")}
-                  helperText={errors.price}
-                />
+              <Grid container spacing={2}>
+                <Grid item xs={12} md={6}>
+                  <Stack spacing={2}>
+                    <TextField
+                      type="text"
+                      label={"Nombre del producto"}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.name}
+                      name="name"
+                      fullWidth
+                      error={handleErrors(errors, touched, "name")}
+                      helperText={errors.name}
+                    />
 
-                <FieldArray name="img">
-                  {({ push, remove }) => (
-                    <>
-                      {values.img.length ? (
-                        <ImageList>
-                          {values.img.map((img, i) => (
-                            <ImageListItem key={img.name}>
-                              <img src={img.path} alt={img.name} />
+                    <TextField
+                      type="text"
+                      label="Descripción del producto"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.description}
+                      name="description"
+                      fullWidth
+                      multiline
+                      rows={3}
+                      error={handleErrors(errors, touched, "description")}
+                      helperText={errors.description}
+                    />
 
-                              <ImageListItemBar
-                                title={img.name}
-                                position="bottom"
-                                actionIcon={
-                                  <IconButton
-                                    sx={{ color: "white" }}
-                                    aria-label={`star ${img.name}`}
-                                    onClick={() => remove(i)}
-                                  >
-                                    <DeleteIcon />
-                                  </IconButton>
-                                }
-                                actionPosition="right"
-                              />
-                            </ImageListItem>
-                          ))}
-                        </ImageList>
-                      ) : (
-                        <Typography variant="h6" gutterBottom color="error">
-                          {errors.img}
-                        </Typography>
-                      )}
+                    <TextField
+                      type="number"
+                      label="Precio"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.price}
+                      name="price"
+                      fullWidth
+                      error={handleErrors(errors, touched, "price")}
+                      helperText={errors.price}
+                    />
+                  </Stack>
+                </Grid>
 
-                      <Stack
-                        spacing={2}
-                        direction="row"
-                        alignItems="center"
-                        justifyContent="space-between"
+                <Grid item xs={12} md={6}>
+                  <Stack spacing={2}>
+                    <FormControl>
+                      <Select
+                        multiple
+                        value={values.category}
+                        name="category"
+                        onBlur={handleBlur}
+                        onChange={handleChange}
                       >
-                        <TextField
-                          type="text"
-                          label="Nombre de la imagen"
-                          onChange={(e) => setName(e.target.value)}
-                          onTouchStart={() => setNameTouch(true)}
-                          onBlur={handleBlur}
-                          value={name}
-                          name={"imgName"}
-                          error={name === "" && nameTouch}
-                          helperText={
-                            nameTouch &&
-                            name === "" &&
-                            "Debe agregar un nombre "
-                          }
-                        />
-                        <IconButton size="small">
-                          <label>
-                            <Box
-                              sx={{
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                              }}
+                        {names.map((name) => (
+                          <MenuItem key={name} value={name}>
+                            {name}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                    <FieldArray name="img">
+                      {({ push, remove }) => (
+                        <>
+                          {values.img.length ? (
+                            <ImageList>
+                              {values.img.map((img, i) => (
+                                <ImageListItem key={img.name}>
+                                  <img src={img.path} alt={img.name} />
+
+                                  <ImageListItemBar
+                                    title={img.name}
+                                    position="bottom"
+                                    actionIcon={
+                                      <IconButton
+                                        sx={{ color: "white" }}
+                                        aria-label={`star ${img.name}`}
+                                        onClick={() => remove(i)}
+                                      >
+                                        <DeleteIcon />
+                                      </IconButton>
+                                    }
+                                    actionPosition="right"
+                                  />
+                                </ImageListItem>
+                              ))}
+                            </ImageList>
+                          ) : (
+                            <Typography variant="h6" gutterBottom color="error">
+                              {errors.img}
+                            </Typography>
+                          )}
+
+                          <Stack
+                            spacing={2}
+                            direction="row"
+                            alignItems="center"
+                            justifyContent="space-between"
+                          >
+                            <TextField
+                              type="text"
+                              label="Nombre de la imagen"
+                              onChange={(e) => setName(e.target.value)}
+                              onTouchStart={() => setNameTouch(true)}
+                              onBlur={handleBlur}
+                              value={name}
+                              name={"imgName"}
+                              error={name === "" && nameTouch}
+                              helperText={
+                                nameTouch &&
+                                name === "" &&
+                                "Debe agregar un nombre "
+                              }
+                            />
+                            <IconButton size="small">
+                              <label>
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                  }}
+                                >
+                                  {img ? (
+                                    <Avatar
+                                      src={URL.createObjectURL(img)}
+                                      alt={name}
+                                    />
+                                  ) : (
+                                    <AddAPhotoIcon />
+                                  )}
+                                  <input
+                                    type="file"
+                                    onChange={(e: any) =>
+                                      setImg(e.target.files[0])
+                                    }
+                                    hidden
+                                  />
+                                </Box>
+                              </label>
+                            </IconButton>
+
+                            <Fab
+                              size="small"
+                              color="primary"
+                              disabled={!img || !name}
+                              onClick={() => onUpdateImg(push)}
                             >
-                              {img ? (
-                                <Avatar
-                                  src={URL.createObjectURL(img)}
-                                  alt={name}
-                                />
-                              ) : (
-                                <AddAPhotoIcon />
-                              )}
-                              <input
-                                type="file"
-                                onChange={(e: any) => setImg(e.target.files[0])}
-                                hidden
-                              />
-                            </Box>
-                          </label>
-                        </IconButton>
-
-                        <Fab
-                          size="small"
-                          color="primary"
-                          disabled={!img || !name}
-                          onClick={() => onUpdateImg(push)}
-                        >
-                          <AddIcon />
-                        </Fab>
-                      </Stack>
-                    </>
-                  )}
-                </FieldArray>
-
-                <FormControl>
-                  <Select
-                    multiple
-                    value={values.category}
-                    name="category"
-                    onBlur={handleBlur}
-                    onChange={handleChange}
+                              <AddIcon />
+                            </Fab>
+                          </Stack>
+                        </>
+                      )}
+                    </FieldArray>
+                  </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    fullWidth
+                    disabled={touched.name !== true || !isValid}
                   >
-                    {names.map((name) => (
-                      <MenuItem key={name} value={name}>
-                        {name}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-
-                <Button
-                  variant="contained"
-                  type="submit"
-                  fullWidth
-                  disabled={touched.name !== true || !isValid}
-                >
-                  Agregar producto
-                </Button>
-              </Stack>
+                    Agregar producto
+                  </Button>
+                </Grid>
+              </Grid>
             </form>
           </Paper>
         )}
