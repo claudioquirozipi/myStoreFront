@@ -50,8 +50,8 @@ const Footer = (props: FooterProps) => {
 
             {type === "client" && (
               <Grid container item xs={12} spacing={1} justifyContent="center">
-                {socialMedia.map((sM) => (
-                  <Grid item xs={2}>
+                {socialMedia.map((sM, i) => (
+                  <Grid item xs={2} key={i}>
                     <Link href={sM.link}>
                       <Image
                         src={image[sM.socialMedia]}

@@ -15,8 +15,10 @@ const ProductsEditPage = () => {
 
   const initialValues: ProductCreate = {
     name: "",
+    description: "",
     img: [],
     price: 0,
+    category: [],
   };
 
   return (

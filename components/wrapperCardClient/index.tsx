@@ -9,8 +9,8 @@ const WrapperCardClient = (props: WrapperCardClientProps) => {
   return (
     <Grid container spacing={2}>
       {products.map((p: Product) => (
-        <Grid item xs={12} md={6}>
-          <CardClientContainer id={p.id} key={p.id}>
+        <Grid item xs={12} md={6} key={p.id}>
+          <CardClientContainer id={p.id}>
             {({ amount }: any) => (
               <CardClient
                 product={p}
