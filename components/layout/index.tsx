@@ -64,7 +64,7 @@ const Layout = (props: LayoutProps) => {
               onDelete={onDelete}
             />
             <WrapperClientSC>{children}</WrapperClientSC>;
-            <Footer />
+            <Footer type="client"/>
           </>
         );
       case "login":
